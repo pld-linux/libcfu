@@ -1,0 +1,29 @@
+diff -burN libcfu-0.02.orig/configure.ac libcfu-0.02/configure.ac
+--- libcfu-0.02.orig/configure.ac	2005-08-01 09:25:52.000000000 +0000
++++ libcfu-0.02/configure.ac	2005-08-01 09:26:36.000000000 +0000
+@@ -8,7 +8,7 @@
+ AC_SUBST(LIBCFU_TYPE_u_int)
+ 
+ AC_PROG_CC
+-AC_PROG_RANLIB
++AC_PROG_LIBTOOL
+ 
+ dnl Check for pthread support
+ SAVECFLAGS="$CFLAGS"
+diff -burN libcfu-0.02.orig/src/Makefile.am libcfu-0.02/src/Makefile.am
+--- libcfu-0.02.orig/src/Makefile.am	2005-08-01 09:25:52.000000000 +0000
++++ libcfu-0.02/src/Makefile.am	2005-08-01 09:27:08.000000000 +0000
+@@ -1,5 +1,5 @@
+-lib_LIBRARIES = libcfu.a
+-libcfu_a_SOURCES = cfuhash.c cfutime.c cfustring.c cfulist.c cfuconf.c cfuthread_queue.c cfu.c
++lib_LTLIBRARIES = libcfu.la
++libcfu_la_SOURCES = cfuhash.c cfutime.c cfustring.c cfulist.c cfuconf.c cfuthread_queue.c cfu.c
+ if DEBUG
+ AM_CFLAGS = -Wall -W -DCFU_DEBUG=1
+ else
+@@ -12,4 +12,4 @@
+ # libcfu_a_LDFLAGS = -lpthread
+ INCLUDES = -I$(top_srcdir)/include
+ 
+-default: libcfu.a
++default: libcfu.la
