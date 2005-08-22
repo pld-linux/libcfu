@@ -8,7 +8,6 @@ Group:		Libraries
 Source0:	http://dl.sourceforge.net/libcfu/%{name}-%{version}.tar.bz2
 # Source0-md5:	5e9e1a474119c8340509323f81c4c527
 Patch0:		%{name}-shared.patch
-Patch1:		%{name}-64bit.patch
 URL:		http://www.sourceforge.net/projects/libcfu/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -55,7 +54,6 @@ Statyczna biblioteka libcfu.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
