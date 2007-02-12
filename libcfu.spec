@@ -1,5 +1,5 @@
 Summary:	A library of useful tools when developing multi-threaded software
-Summary(pl):	Biblioteka nardzêdzi przydatnych podczas tworzenia oprogramowania wielow±tkowego
+Summary(pl.UTF-8):   Biblioteka nardzÄ™dzi przydatnych podczas tworzenia oprogramowania wielowÄ…tkowego
 Name:		libcfu
 Version:	0.02
 Release:	0.1
@@ -20,35 +20,35 @@ developing multi-threaded software. It currently includes a hash
 table, a linked list, self-extending strings, a configuration file
 parser, a simple timer, and a thread queue.
 
-%description -l pl
-Libcfu jest zestawem narzêdzi, które mog± okazaæ siê przydatne,
-szczególnie podczas rozwijania oprogramowania wielow±tkowego.
-Aktualnie zawiera tablicê haszuj±c±, listê dynamiczn±, samorozwijaj±ce
-siê ci±gi znaków, parser plików konfiguracyjnych, prosty zegar oraz
-kolejkê w±tków.
+%description -l pl.UTF-8
+Libcfu jest zestawem narzÄ™dzi, ktÃ³re mogÄ… okazaÄ‡ siÄ™ przydatne,
+szczegÃ³lnie podczas rozwijania oprogramowania wielowÄ…tkowego.
+Aktualnie zawiera tablicÄ™ haszujÄ…cÄ…, listÄ™ dynamicznÄ…, samorozwijajÄ…ce
+siÄ™ ciÄ…gi znakÃ³w, parser plikÃ³w konfiguracyjnych, prosty zegar oraz
+kolejkÄ™ wÄ…tkÃ³w.
 
 %package devel
 Summary:	Header files for libcfu library
-Summary(pl):	Pliki nag³ówkowe biblioteki libcfu
+Summary(pl.UTF-8):   Pliki nagÅ‚Ã³wkowe biblioteki libcfu
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
 %description devel
 Header files for libcfu library.
 
-%description devel -l pl
-Pliki nag³ówkowe biblioteki libcfu.
+%description devel -l pl.UTF-8
+Pliki nagÅ‚Ã³wkowe biblioteki libcfu.
 
 %package static
 Summary:	Static libcfu library
-Summary(pl):	Statyczna biblioteka libcfu
+Summary(pl.UTF-8):   Statyczna biblioteka libcfu
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
 %description static
 Static libcfu library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka libcfu.
 
 %prep
