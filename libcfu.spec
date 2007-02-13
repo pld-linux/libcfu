@@ -1,5 +1,5 @@
 Summary:	A library of useful tools when developing multi-threaded software
-Summary(pl.UTF-8):   Biblioteka nardzędzi przydatnych podczas tworzenia oprogramowania wielowątkowego
+Summary(pl.UTF-8):	Biblioteka nardzędzi przydatnych podczas tworzenia oprogramowania wielowątkowego
 Name:		libcfu
 Version:	0.02
 Release:	0.1
@@ -29,7 +29,7 @@ kolejkę wątków.
 
 %package devel
 Summary:	Header files for libcfu library
-Summary(pl.UTF-8):   Pliki nagłówkowe biblioteki libcfu
+Summary(pl.UTF-8):	Pliki nagłówkowe biblioteki libcfu
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 
@@ -41,7 +41,7 @@ Pliki nagłówkowe biblioteki libcfu.
 
 %package static
 Summary:	Static libcfu library
-Summary(pl.UTF-8):   Statyczna biblioteka libcfu
+Summary(pl.UTF-8):	Statyczna biblioteka libcfu
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{version}-%{release}
 
