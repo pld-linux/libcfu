@@ -10,20 +10,31 @@ diff -burN libcfu-0.02.orig/configure.ac libcfu-0.02/configure.ac
  
  dnl Check for pthread support
  SAVECFLAGS="$CFLAGS"
-diff -burN libcfu-0.02.orig/src/Makefile.am libcfu-0.02/src/Makefile.am
---- libcfu-0.02.orig/src/Makefile.am	2005-08-01 09:25:52.000000000 +0000
-+++ libcfu-0.02/src/Makefile.am	2005-08-01 09:27:08.000000000 +0000
+--- libcfu-0.03/src/Makefile.am.orig	2024-02-11 10:14:12.098048826 +0100
++++ libcfu-0.03/src/Makefile.am	2024-02-11 10:16:45.943882038 +0100
 @@ -1,5 +1,5 @@
 -lib_LIBRARIES = libcfu.a
--libcfu_a_SOURCES = cfuhash.c cfutime.c cfustring.c cfulist.c cfuconf.c cfuthread_queue.c cfu.c
+-libcfu_a_SOURCES = cfuhash.c cfutime.c cfustring.c cfulist.c cfuconf.c cfuthread_queue.c cfu.c cfuopt.c
 +lib_LTLIBRARIES = libcfu.la
-+libcfu_la_SOURCES = cfuhash.c cfutime.c cfustring.c cfulist.c cfuconf.c cfuthread_queue.c cfu.c
- if DEBUG
- AM_CFLAGS = -Wall -W -DCFU_DEBUG=1
- else
-@@ -12,4 +12,4 @@
- # libcfu_a_LDFLAGS = -lpthread
++libcfu_la_SOURCES = cfuhash.c cfutime.c cfustring.c cfulist.c cfuconf.c cfuthread_queue.c cfu.c cfuopt.c
+ bin_PROGRAMS = libcfu-config
+ 
+ CFU_CONFIG_DEFINES = -DCFU_LIBDIR="\"@libdir@\"" -DCFU_LIBS="\"@LIBS@\"" -DCFU_INCLUDEDIR="\"@includedir@\"" -DCFU_PREFIX="\"@prefix@\""  -DCFU_EXEC_PREFIX="\"@exec_prefix@\""
+@@ -16,13 +16,13 @@ include_HEADERS = $(top_srcdir)/include/
+     $(top_srcdir)/include/cfuthread_queue.h $(top_srcdir)/include/cfutypes.h \
+     $(top_srcdir)/include/cfuopt.h
+ 
+-# libcfu_a_LDFLAGS = -lpthread
++# libcfu_la_LDFLAGS = -lpthread
  INCLUDES = -I$(top_srcdir)/include
  
--default: libcfu.a
-+default: libcfu.la
+-default: libcfu.a libcfu-config
++default: libcfu.la libcfu-config
+ 
+ libcfu-config.o: libcfu-config.c
+ 
+-libcfu-config: libcfu.a libcfu-config.o
+-	$(CC) $(CFLAGS) -o libcfu-config libcfu-config.o libcfu.a -pthread
++libcfu-config: libcfu.la libcfu-config.lo
++	$(LIBTOOL) --mode=link $(CC) $(CFLAGS) -o libcfu-config libcfu-config.o libcfu.la -pthread
+ 

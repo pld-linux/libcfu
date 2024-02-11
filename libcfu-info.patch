@@ -1,0 +1,14 @@
+--- libcfu-0.03/doc/libcfu.texi.orig	2005-09-05 04:01:38.000000000 +0200
++++ libcfu-0.03/doc/libcfu.texi	2024-02-11 13:18:49.981368118 +0100
+@@ -45,9 +45,9 @@ OF THE POSSIBILITY OF SUCH DAMAGE.
+ 
+ 
+ @ifinfo
+-@dircategory Libraries
++@dircategory Libraries:
+ @direntry
+-     * Libcfu: (libcfu).                     The cfu library.
++* Libcfu: (libcfu).			The cfu library
+ @end direntry
+ @end ifinfo
+ 
