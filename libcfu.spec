@@ -10,6 +10,7 @@ Source0:	https://downloads.sourceforge.net/libcfu/%{name}-%{version}.tar.bz2
 Patch0:		%{name}-shared.patch
 Patch1:		%{name}-examples.patch
 Patch2:		%{name}-info.patch
+Patch3:		%{name}-types.patch
 URL:		https://libcfu.sourceforge.net/
 BuildRequires:	autoconf >= 2.50
 BuildRequires:	automake
@@ -59,6 +60,7 @@ Statyczna biblioteka libcfu.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 %{__libtoolize}

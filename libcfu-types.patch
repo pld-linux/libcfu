@@ -1,0 +1,109 @@
+--- libcfu-0.03/examples/hash_usage.c.orig	2005-07-28 09:01:54.000000000 +0200
++++ libcfu-0.03/examples/hash_usage.c	2024-02-12 22:10:55.321453495 +0100
+@@ -36,8 +36,8 @@ int main(int argc, char **argv) {
+ 	cfuhash_set_flag(hash, CFUHASH_FROZEN_UNTIL_GROWS);
+ 
+ 	for (i = 0; i < 32; i++) {
+-		sprintf(list[i][0], "test_var%d", i);
+-		sprintf(list[i][1], "value%d", i);
++		sprintf(list[i][0], "test_var%zd", i);
++		sprintf(list[i][1], "value%zd", i);
+ 	}
+ 	
+ 	cfuhash_put(hash, "var1", "value1");
+@@ -58,7 +58,7 @@ int main(int argc, char **argv) {
+ 	printf("got var2='%s'\n", val);
+ 	printf("var4 %s\n", cfuhash_exists(hash, "var4") ? "exists" : "does NOT exist!!!");
+ 
+-	printf("%d entries, %d buckets used out of %d\n", cfuhash_num_entries(hash), cfuhash_num_buckets_used(hash), cfuhash_num_buckets(hash));
++	printf("%zd entries, %zd buckets used out of %zd\n", cfuhash_num_entries(hash), cfuhash_num_buckets_used(hash), cfuhash_num_buckets(hash));
+ 
+ 	cfuhash_pretty_print(hash, stdout);
+ 	
+@@ -69,7 +69,7 @@ int main(int argc, char **argv) {
+ 		size_t num_buckets = cfuhash_num_buckets(hash);
+ 		size_t num_entries = cfuhash_num_entries(hash);
+ 		cfuhash_put(hash, list[i][0], list[i][1]);
+-		printf("%d entries, %d buckets used out of %d (%.2f)\n", num_entries, used, num_buckets, (float)num_entries/(float)num_buckets);
++		printf("%zd entries, %zd buckets used out of %zd (%.2f)\n", num_entries, used, num_buckets, (float)num_entries/(float)num_buckets);
+ 
+ 	}
+ 
+@@ -82,7 +82,7 @@ int main(int argc, char **argv) {
+ 		
+ 		keys = (char **)cfuhash_keys_data(hash, &key_count, &key_sizes, 0);
+ 
+-		printf("\n\nkeys (%u):\n", key_count);
++		printf("\n\nkeys (%zu):\n", key_count);
+ 		for (i = 0; i < key_count; i++) {
+ 			printf("\t%s\n", keys[i]);
+ 			free(keys[i]);
+@@ -92,7 +92,7 @@ int main(int argc, char **argv) {
+ 	}
+ 
+ 	cfuhash_clear(hash);
+-	printf("%d entries, %d buckets used out of %d\n", cfuhash_num_entries(hash), cfuhash_num_buckets_used(hash), cfuhash_num_buckets(hash));
++	printf("%zd entries, %zd buckets used out of %zd\n", cfuhash_num_entries(hash), cfuhash_num_buckets_used(hash), cfuhash_num_buckets(hash));
+ 
+ 	cfuhash_destroy(hash);
+ 
+--- libcfu-0.03/examples/strings.c.orig	2005-08-16 17:28:01.000000000 +0200
++++ libcfu-0.03/examples/strings.c	2024-02-12 22:39:52.218398039 +0100
+@@ -39,7 +39,7 @@ int main(int argc, char **argv) {
+ 	cfustring_append(buf, "test^*string%2^*3");
+ 	strings = cfustring_split_to_c_str(buf, &num_strings, 0, "%", "^*", NULL);
+ 
+-	printf("got back %u strings\n", num_strings);
++	printf("got back %zu strings\n", num_strings);
+ 
+ 	printf("\n");
+ 	for (i = 0; i < num_strings; i++) {
+@@ -52,7 +52,7 @@ int main(int argc, char **argv) {
+ 	free(strings);
+ 
+ 	header_lines = cfustring_split(header_block, &num_headers, 0, "\r\n", "\n", NULL);
+-	printf("got back %u headers\n", num_strings);
++	printf("got back %zu headers\n", num_strings);
+ 
+ 	for (i = 0; i < num_headers; i++) {
+ 		strings = cfustring_split_to_c_str(header_lines[i], &num_strings, 2, ":", NULL);
+@@ -61,7 +61,7 @@ int main(int argc, char **argv) {
+ 			size_t j = 0;
+ 			for (j = 0; j < num_strings; j++) free(strings[j]);
+ 			free(strings);
+-			fprintf(stderr, "bad header: %u strings from split -- '%s'\n", num_strings, cfustring_get_buffer(header_lines[i]));
++			fprintf(stderr, "bad header: %zu strings from split -- '%s'\n", num_strings, cfustring_get_buffer(header_lines[i]));
+ 			continue;
+ 		}
+ 
+--- libcfu-0.03/examples/large_hash.c.orig	2024-02-12 22:11:47.745099694 +0100
++++ libcfu-0.03/examples/large_hash.c	2024-02-12 22:40:55.005430025 +0100
+@@ -122,8 +122,8 @@ time_it(cfuhash_function_t hf, double *e
+ 
+ 	cfutime_begin(time);
+ 	for (i = 0; i < num_tests; i++) {
+-		sprintf(key, "%u", 15000000 - i);
+-		sprintf(value, "value%d", i);
++		sprintf(key, "%zu", 15000000 - i);
++		sprintf(value, "value%zd", i);
+ 		cfuhash_put(hash, key, dup_str(value));
+ 	}
+ 	cfutime_end(time);
+@@ -132,7 +132,7 @@ time_it(cfuhash_function_t hf, double *e
+ 	used = cfuhash_num_buckets_used(hash);
+ 	num_buckets = cfuhash_num_buckets(hash);
+ 	num_entries = cfuhash_num_entries(hash);
+-	printf("%d entries, %d/%d buckets (%.2f%%), %.2f%% threshold check\n", num_entries, used, num_buckets, 100.0 * (float)used/(float)num_buckets, 100.0 * (float)num_entries/(float)num_buckets);
++	printf("%zd entries, %zd/%zd buckets (%.2f%%), %.2f%% threshold check\n", num_entries, used, num_buckets, 100.0 * (float)used/(float)num_buckets, 100.0 * (float)num_entries/(float)num_buckets);
+ 
+ 	cfuhash_destroy_with_free_fn(hash, free_data);	
+ 
+@@ -147,7 +147,7 @@ int main(int argc, char **argv) {
+ 	argc = argc;
+ 	argv = argv;
+ 
+-	printf("mutex is %d bytes\n", sizeof(pthread_mutex_t));
++	printf("mutex is %zd bytes\n", sizeof(pthread_mutex_t));
+ 
+ 	printf("default:\n");
+ 	time_it(NULL, &elapsed_time, num_tests);
